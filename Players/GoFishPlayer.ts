@@ -38,7 +38,7 @@ export abstract class GoFishPlayer extends Player {
 
     public removeMatches(rankToCompare: number): void {
         for(var i = 0; i < this.cardHand.length; i++) {
-            if(this.cardHand[i].getRank === rankToCompare) {
+            if(this.cardHand[i].getRank() === rankToCompare) {
 
             }
         }
