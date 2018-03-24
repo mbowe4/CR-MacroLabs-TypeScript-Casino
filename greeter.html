@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+<body>
+
+<p>Click the button to demonstrate the prompt box.</p>
+<button onclick="setUpUserProfile(); initiateGame(); selectGame(selectedGame)">Try Me!</button>
+
+
+<p id="demo"></p>
+
+
+<script>
+var userName;
+var userBalance; 
+var selectedGame;
+
+function askUserName() {
+    return prompt("Please enter your name");
+}
+
+function askUserBalance() {
+    return prompt("Please enter your balance");
+
+}
+
+function setUpUserProfile() {
+    userName = this.askUserName();
+    userBalance = this.askUserBalance();
+    
+    document.getElementById("demo").innerHTML="Hello, " + userName + ". " + "Your balance is $" + userBalance + ".";
+}
+
+function availableGames() {
+    return prompt("Please select a game\n1. Go Fish\n2. War");
+}
+
+function initiateGame() {
+    selectedGame = this.availableGames();
+    return selectedGame;
+}
+
+function selectGame(selectedGame) {
+    switch (selectedGame) {
+        case "War":
+            alert("You picked War");
+            break;
+        case "Go Fish":
+            alert("you picked Go Fish");
+            break;
+        //default: 
+            //alert("Wrong");
+    }
+}
+
+</script>
+
+</body>
+</html>
