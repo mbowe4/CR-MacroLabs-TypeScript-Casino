@@ -1,22 +1,22 @@
 export class Suit {
 
-    private static HEARTS: String = "Hearts";
-    private static CLUBS: String = "Clubs";
-    private static DIAMOND: String = "Diamonds";
-    private static SPADE: String = "Spades";
+    private static HEARTS: string = "Hearts";
+    private static CLUBS: string = "Clubs";
+    private static DIAMOND: string = "Diamonds";
+    private static SPADE: string = "Spades";
 
-    private suitValue: String;
+    private suitValue: string;
 
-    constructor(suitValue: String) {
+    constructor(suitValue: string) {
         this.suitValue = suitValue;
     }
 
-    public getSuitValue(): String {
+    public getSuitValue(): string {
         return this.suitValue;
     } 
 
-    public static values(): Array<String> {
-        let suits: String[] = new Array<String>(Suit.HEARTS, Suit.CLUBS, Suit.DIAMOND, Suit.SPADE);
+    public static values(): Array<string> {
+        let suits: string[] = new Array<string>(Suit.HEARTS, Suit.CLUBS, Suit.DIAMOND, Suit.SPADE);
         return suits;
     }
 }

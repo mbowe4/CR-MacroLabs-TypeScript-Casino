@@ -6,22 +6,25 @@ import { Card } from "../GameTools/Card";
 export class GoFishHumanPlayer extends GoFishPlayer {
     displayEle:any;
     userInputEle:any;
+    submit:any;
+
     
     constructor(rootPlayer) {
         super(rootPlayer);
-        this.displayEle = document.getElementById("display");
-        this.userInputEle = document.getElementById("user_input");
+        this.displayEle = document.getElementById("disply"); 
+        this.userInput = document.getElementById("user_input");
+        this.submit = document.getElementById("submit");
     }
 
     public showCards(): string {
-        var showCardHand: string = "";
+        let showCardHand: string = "";
         for(var i = 0; i < this.cardHand.length; i++) {
             showCardHand.concat((i + 1).toString(), ": ", this.cardHand[i].toString());
             
-            this.displayEle.innerHTML += "<br/>";
-            this.displayEle.innterHTML += showCardHand;
-            return showCardHand;
+            
         }
+            this.displayEle.innerHTML += "<br/>" + showCardHand;
+            return showCardHand;
     }
 
     public showOpponents(opponents: GoFishPlayer[]): string {
@@ -60,13 +63,9 @@ export class GoFishHumanPlayer extends GoFishPlayer {
             if(e instanceof RangeError) {
                 this.displayEle.innerHTML += "<br/>";
                 this.displayEle.innerHTML+= "Try again. Please enter one of the numbers show.";
-                return this.pickCard();
             }
         }
-        
+        return this.pickCard();
     }
-
-
-
 
 }

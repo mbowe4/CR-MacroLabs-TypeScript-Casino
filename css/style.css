@@ -143,3 +143,23 @@ h1 {font-weight: bold; margin-left: 10px;}
 #gameMenu {
     padding: 20px;
 }
+
+.button {
+    background-color: #3c790a;
+    border: none;
+    color: white;
+    padding: 15px 32px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin: 4px 2px;
+    cursor: pointer;
+}
+
+input[type=text] {
+    width: 50%;
+    padding: 12px 20px;
+    margin: 8px 0;
+    box-sizing: border-box;
+}

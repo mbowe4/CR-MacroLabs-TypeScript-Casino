@@ -5,7 +5,7 @@ export class Card {
 
     private suit: Suit;
     private rank: Rank;
-    private card: String = "";
+    private card: string = "";
 
     constructor(rank: Rank, suit: Suit) {
         this.setSuit(suit);

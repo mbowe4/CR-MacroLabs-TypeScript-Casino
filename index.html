@@ -9,31 +9,44 @@
     <link href="./css/style.css" type="text/css" rel="stylesheet">
     <title>TypeScript Casino | Zipcode Wilmington</title>
 </head>
-<body>
+<body onload="casino.init()">
     <header class="main-header group">
         <div class="title"></div>
         <div class="lesson-link"><img src="./images/logos/js_logo.png" alt="Javascript"/></div>
         <div class="zip-link"><img src="./images/logos/zip_logo.jpg" alt="Zipcode Wilmington"/></div>
     </header>
+    <h4 id="userInfo" hiddent="true"></h4>
 
     <h1>TypeScript Casino</h1>
+    <div id="cardGame" hidden="true"></div>
+
+    <script type="text/javascript" src="/js/App.js"></script>
 
     <section id="main">
-        <div id="display">
-            <p>Welcome to the TypeScript Casino!</p>
-            <p>Please enter a number to pick a game:</p>
-            <ol id="gameMenu">
-                <li>War</li>
-                <li>Go Fish</li>
-            </ol>     
+        <div id="display"></div>
+
+        <div id="gameOptions" hidden="true">
+            <input type="submit" value="Go Fish" onclick="casino.goFish.init()">
+            <input type="submit" value="War" onclick="casino.war.init()">
         </div>
+
 			<div id="input">
-				<input type="text" name="user_input" id="user_input">
-				<input type="submit" value="submit">
-			</div>
+				<input type="text" name="user_input" id="user_input" placeholder="NAME">
+				<input type="submit" class="button" value="submit" id="submit" onclick="casino.getName()">
+            </div>
+            
+            <input type="submit" class="button" id="mainMenu" value="Main Menu" onclick="casino.gameOptions()" hidden="true">
+            <button id="testButton" class="button" onclick="Casino.init()">Test</button>
+            
+            <script type="text/javascript"> document.getElementById("testButton").onclick = function () {
+                //location.href = "/Users/madelinebowe/Dev/CR-MacroLabs-TypeScript-Casino/index.html";
+                alert("button clicked");
+                Casino.init();
+                alert("Compiled?");
+            };
+            </script>
     </section>
 
 
-     <script type = "text/javascript" src="js/app.ts" ></script>
 </body>
 </html>

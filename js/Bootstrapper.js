@@ -1,3 +1,4 @@
+"use strict";
 /// <reference path="./Casino.ts" />
 /// <reference path="./Games/GoFishGame.ts" />
 /// <reference path="./GameTools/Card.ts" />
@@ -9,11 +10,8 @@
 /// <reference path="./Players/GoFishHumanPlayer.ts" />
 /// <reference path="./Players/Player.ts" />
 /// <reference path="./Players/GoFishComputerPlayer.ts" />
-
-
-
-
-import { Casino } from "./Casino";
-
-let casino = new Casino();
+Object.defineProperty(exports, "__esModule", { value: true });
+var Casino_1 = require("./Casino");
+var casino = new Casino_1.Casino();
 casino.init();
+//# sourceMappingURL=Bootstrapper.js.map

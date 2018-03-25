@@ -7,11 +7,18 @@ import { Rank } from "../GameTools/Rank";
 export abstract class GoFishPlayer extends Player {
     protected cardHand: Card[];
     protected numPairs: number;
+    displayEle:any; 
+    userInput:any;
+    submit:any;
+
 
     constructor(rootPlayer?: Player, name?: string) {
-        super(rootPlayer.getId(), rootPlayer.getName(), rootPlayer.getBalance());
+        super(rootPlayer.getName(), rootPlayer.getBalance());
         this.cardHand = new Array<Card>();
         this.numPairs = 0;
+        this.displayEle = document.getElementById("disply"); 
+        this.userInput = document.getElementById("user_input");
+        this.submit = document.getElementById("submit");
     }
 
     
@@ -26,7 +33,7 @@ export abstract class GoFishPlayer extends Player {
 
     public addCardToHand(cardToAdd:Card): void {
         if(this.hasCard(cardToAdd)) {
-            console.log(this.getName() + " made a match. One point.");
+            this.displayEle.innerHTML(this.getName() + " made a match. One point.");
             this.addPair();
             this.removeMatches(cardToAdd.getRank());
         }
@@ -38,7 +45,7 @@ export abstract class GoFishPlayer extends Player {
     public removeMatches(rankToCompare: number): void {
         for(var i = 0; i < this.cardHand.length; i++) {
             if(this.cardHand[i].getRank() === rankToCompare) {
-
+                this.cardHand.splice(i, 1);
             }
         }
     }
@@ -61,7 +68,11 @@ export abstract class GoFishPlayer extends Player {
     }
 
     public removeCard(cardToRemove: Card): void {
-        // find out how to iterate and remove
+        for(var i = 0; i < this.cardHand.length; i++) {
+            if(this.cardHand[i].getRank() === cardToRemove.getRank()) {
+                this.cardHand.splice(i, 1);
+            }
+        }
     }
 
     public abstract pickOpponentToAsk(opponents: GoFishPlayer[]): GoFishPlayer;

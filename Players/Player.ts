@@ -4,10 +4,10 @@ import { Profile } from "./Profile";
 export class Player {
     private id: string;
     private name: string;
-    private balance: string;
+    private balance: number;
 
     
-    constructor(name?: string, balance?: string, id?: string) {
+    constructor(name?: string, balance?: number, id?: string) {
         this.setId(id);
         this.setName(name);
         this.balance = balance;
@@ -21,7 +21,7 @@ export class Player {
         this.id = id;
     }
 
-    public getName() {
+    public getName(): string {
         return this.name;
     }
 
@@ -29,9 +29,13 @@ export class Player {
         this.name = name;
     }
 
-    public getBalance() {
+    public getBalance():number {
         return this.balance;
     }
+
+    toString(): string {
+        return "Name: ".concat(this.getName(), " | ", "Balance: ", "+this.balance+");
+    } 
 
 
 }

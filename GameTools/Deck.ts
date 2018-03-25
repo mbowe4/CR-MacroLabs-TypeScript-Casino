@@ -28,9 +28,6 @@ export class Deck {
             const j = Math.floor(Math.random() * (i + 1));
             [this.deck[i], this.deck[j]] = [this.deck[j], this.deck[i]];
         } 
-    }
-
-
-        
+    }      
 }
 
