@@ -1,29 +1,37 @@
 import { Player } from "./Players/Player";
+import { Game } from "/Users/madelinebowe/Dev/CR-MacroLabs-TypeScript-Casino/Interfaces/Game";
+import { GoFishGame } from "./Games/GoFishGame";
+import { GoFishHumanPlayer } from "./Players/GoFishHumanPlayer";
 
 export class Casino {
+    displayEle:any = document.getElementById("disply");
+    userInput:any = document.getElementById("user_input");
+
     player:Player;
     private isPlaying:boolean = true;
 
-    protected askUserName(): String {
-        let name: String = prompt("Please enter your name.");
+    protected askUserName(): string {
+        this.displayEle.innerHTML += "<br/>".concat("Please enter your name");
+        var name: string = this.userInput.value;
         return name;
     }
 
-    protected askUserBalance(): String {
-        let balance = prompt("Please enter your balance.");
+    protected askUserBalance(): string {
+        this.displayEle.innerHTML += "<br/>".concat("Please enter your balance");
+        var balance: string = this.userInput.value;
         return balance;
     }
 
     protected setUpUserProfile(): void {
-        let name: String = this.askUserName();
-        let balance: String = this.askUserBalance();
+        var name: string = this.askUserName();
+        var balance: string = this.askUserBalance();
 
         this.player = new Player(name, balance);
     }
 
     protected initiateGame(): void {
         do {
-            let selectedGame: String = this.availableGames();
+            var selectedGame: string = this.availableGames();
             if(selectedGame == "Exit") {
                 this.exitCasino();
                 break;
@@ -34,8 +42,9 @@ export class Casino {
         while(this.isPlaying);
     }
 
-    public availableGames():String {
-        return prompt("Please select a game\n1. Go Fish\n2. War");
+    public availableGames():string {
+        this.displayEle.innerHTML += "<br/>".concat("Please select a game", "<br/>", "1. Go Fish", "<br/>", "2. War");
+        return this.userInput.value;
     }
     
     public selectGame(selectedGame): Game {
@@ -43,12 +52,14 @@ export class Casino {
 
         switch (selectedGame) {
             case "War":
-                alert("You picked War");
-                game = new War(this.player);
+            this.displayEle.innerHTML += "<br/>";  
+            this.displayEle.innerHTML += "You picked War";
+                //game = new War(this.player);
                 break;
             case "Go Fish":
-                alert("you picked Go Fish");
-                game = new GoFish(new GoFishHumanPlayer(player));
+            this.displayEle.innerHTML += "<br/>";  
+            this.displayEle.innerHTML += "You picked Go Fish";
+                game = new GoFishGame(new GoFishHumanPlayer(this.player));
                 break;
             default: 
                 alert("Please pick a valid choice.");
@@ -62,24 +73,6 @@ export class Casino {
     }
 
     protected exitCasino(): void {
-        console.log("Thank you for visiting.");
+        this.displayEle.innerHTML += "Thank you for visiting.";
     }
-
-
-// }
-
-// function askUserName(): void {
-//     this.name = prompt("Please enter your name.");
-
-//     if(name != null) {
-//         document.getElementById("displayName").innerHTML = "Hello, " + name;
-//     }
-// }
-
-// function askUserBalance(): void {
-//     this.balance = prompt("Please enter your balance.");
-
-//     if(this.balance != null) {
-//         document.getElementById("displayBalance").innerHTML = "Your balance is: " + this.balance;
-//     }
-//
+}

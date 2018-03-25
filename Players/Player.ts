@@ -2,12 +2,12 @@
 import { Profile } from "./Profile";
 
 export class Player {
-    private id: String;
-    private name: String;
-    private balance: String;
+    private id: string;
+    private name: string;
+    private balance: string;
 
     
-    constructor(name: String, balance: String, id?: String) {
+    constructor(name?: string, balance?: string, id?: string) {
         this.setId(id);
         this.setName(name);
         this.balance = balance;
@@ -17,7 +17,7 @@ export class Player {
         return this.id;
     }
 
-    public setId(id: String) {
+    public setId(id: string) {
         this.id = id;
     }
 
@@ -25,7 +25,7 @@ export class Player {
         return this.name;
     }
 
-    public setName(name: String) {
+    public setName(name: string) {
         this.name = name;
     }
 

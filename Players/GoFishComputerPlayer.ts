@@ -4,16 +4,21 @@ import { GoFishPlayer } from "./GoFishPlayer";
 import { Card } from "../GameTools/Card";
 
 export class GoFishComputerPlayer extends GoFishPlayer{
-    private randomNumber: number;
 
+    constructor(name: any) {
+        super(name);
+    }
+
+    public getNumPairs(): number {
+        return this.numPairs;
+    }
     
     public pickOpponentToAsk(opponents: GoFishPlayer[]): GoFishPlayer {
-        throw new Error("Method not implemented.");
+        var opponentIndex:number = Math.floor(Math.random() * (opponents.length));
+        return opponents[opponentIndex];
     }
     public pickCard(): Card {
-        throw new Error("Method not implemented.");
-    }
-    private rand: number;
-
-    
+        var cardIndex:number = Math.floor(Math.random() * (this.cardHand.length));
+        return this.cardHand[cardIndex];
+    }  
 }

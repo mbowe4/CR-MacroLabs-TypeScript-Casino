@@ -5,17 +5,16 @@ import { Card } from "../GameTools/Card";
 import { Rank } from "../GameTools/Rank";
 
 export abstract class GoFishPlayer extends Player {
-    private cardHand: Card[];
-    private numPairs: number;
+    protected cardHand: Card[];
+    protected numPairs: number;
 
-    //constructor(String name);
-    constructor(rootPlayer: Player) {
+    constructor(rootPlayer?: Player, name?: string) {
         super(rootPlayer.getId(), rootPlayer.getName(), rootPlayer.getBalance());
         this.cardHand = new Array<Card>();
         this.numPairs = 0;
     }
 
-    // find out how to add second constructor
+    
 
     public addPair(): void {
         this.numPairs++;

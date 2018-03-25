@@ -28,7 +28,7 @@ export class Card {
         this.rank = rank;
     }
 
-    public toString(): String {
+    public toString(): string {
         return this.card + "" + this.getRank() + " of " + this.getSuit();
     }
 }

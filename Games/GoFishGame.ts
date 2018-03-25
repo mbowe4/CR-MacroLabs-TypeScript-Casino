@@ -4,22 +4,29 @@ import { GoFishHumanPlayer } from "/Users/madelinebowe/Dev/CR-MacroLabs-TypeScri
 import { Deck } from "/Users/madelinebowe/Dev/CR-MacroLabs-TypeScript-Casino/GameTools/Deck"
 import { GoFishComputerPlayer } from "../Players/GoFishComputerPlayer";
 import { Card } from "../GameTools/Card";
+import { Game } from "/Users/madelinebowe/Dev/CR-MacroLabs-TypeScript-Casino/Interfaces/Game";
 
-export class GoFishGame{
+export class GoFishGame implements Game{
+    displayEle:any;
+    userInputEle:any;
     private turnCounter: number;
     private players: GoFishPlayer[];
     private deck: Deck;
 
     constructor(player1: GoFishHumanPlayer) {
-        this.players = [player1, new GoFishComputerPlayer(), new GoFishComputerPlayer()];
+        this.players = [player1, new GoFishComputerPlayer("Bob"), new GoFishComputerPlayer("Sue")];
         this.turnCounter = 0;
         this.deck = new Deck();
         this.deck.shuffle();
+        this.displayEle = document.getElementById("display");
+        this.userInputEle = document.getElementById("user_input");
     }
 
     public welcomeMessage(): void {
-        console.log("Welcome to Go Fish!")
-        console.log("You are playing with Bob and Sue today.")
+        this.displayEle.innerHTML += "<br/>";
+        this.displayEle.innerHTML += "Welcome to Go Fish!";
+        this.displayEle.innerHTML += "<br/>";
+        this.displayEle.innerHTML += "You are playing with Bob and Sue today.";
     }
 
     public startGame(): void {
@@ -35,11 +42,12 @@ export class GoFishGame{
     }
 
     public deal(): void {
-        console.log("Dealing out player hands");
+        this.displayEle.innterHTML += "<br/>";
+        this.displayEle.innerHTML += "Dealing out player hands.";
         for (var i = 0; i < this.players.length; i++ ) {
             for(var j = 0; j < 5; j++) {
                 this.players[i].addCardToHand(this.deck.getTopCard());
-                this.deck.remove(i);
+                this.deck.deck.pop();
             }
         }
     }
@@ -58,23 +66,52 @@ export class GoFishGame{
     }
 
     public takeTurn(): void {
-        let currentPlayer: GoFishPlayer = this.getCurrentPlayer();
+        var currentPlayer: GoFishPlayer = this.getCurrentPlayer();
         if(currentPlayer.isHandEmpty()) {
-            console.log(currentPlayer.getName() + " ran out of cards and there are not cards left in the deck. Skipping turn.");
+            this.displayEle.innerHTML += "<br/>";
+            this.displayEle.innerHTML += currentPlayer.getName() + " ran out of cards and there are not cards left in the deck. Skipping turn.";
             this.turnCounter++;
             return;
         }
-        console.log("It's " + currentPlayer.getName() + "'s turn.");
+        this.displayEle.innerHTML += "<br/>";
+        this.displayEle.innerHTML +="It's " + currentPlayer.getName() + "'s turn.";
 
-        let opponents: GoFishPlayer[] = [this.players];
+        var opponents: GoFishPlayer[] = (this.players);
         
         let currentPlayerIndex: number = opponents.indexOf(currentPlayer);
-        opponents.splice()
-        GoFishPlayer opponentToAsk = currentPlayer.pickOpponentToAsk(opponents);
+        opponents.splice(currentPlayerIndex, 1);
+
+        var opponentToAsk:GoFishPlayer = currentPlayer.pickOpponentToAsk(opponents);
 
         let cardPicked: Card = currentPlayer.pickCard();
-        System.out.println("\n" + currentPlayer.getName() + " asked " + opponentToAsk.getName() + " for a " + cardPicked + ".\n");
+        this.displayEle.innerHTML += "<br/>";
+        this.displayEle.innerHTML += currentPlayer.getName().concat(" asked ", opponentToAsk.getName(), " for a ", cardPicked.toString(), ".");
 
+        if(opponentToAsk.hasCard(cardPicked)) {
+            opponentToAsk.removeCard(cardPicked);
+            currentPlayer.addCardToHand(cardPicked);
+            this.displayEle.innerHTML += "<br/>".concat(opponentToAsk.getName(), " had that card. ", currentPlayer.getName(), " goes again.");
+            this.fillPlayerHands();
+            this.takeTurn();
+        } else {
+            this.displayEle.innerHTML += "<br/>".concat(opponentToAsk.getName(), " did not have that card ", "Go fish.");
+            if (this.deck.deck.length == 0) {
+                this.displayEle.innerHTML += "<br/>" + "The deck is empty. No cards to draw.";
+                this.turnCounter++;
+                return;
+            }
+            var topCard: Card = this.deck.getTopCard();
+            this.deck.deck.pop();
+            currentPlayer.addCardToHand(topCard);
+            if (topCard.getRank() == cardPicked.getRank()) {
+                this.displayEle.innerHTML += "<br/>".concat(currentPlayer.getName() + " picked their wish!" + currentPlayer.getName() + " gets a point. Go again.");
+                this.fillPlayerHands();
+                this.takeTurn();
+            } else {
+                this.fillPlayerHands();
+                this.turnCounter++;
+            }
+        }
     }
 
     public fillPlayerHands(): void {
@@ -82,7 +119,7 @@ export class GoFishGame{
             if(this.players[i].isHandEmpty() && this.deck.deck.length > 0) {
                 let topCard: Card = this.deck.getTopCard();
                 //this.deck.deck.splice(0, 1);
-                this.deck.deck.remove(0);
+                this.deck.deck.pop();
                 this.players[i].addCardToHand(topCard);
             }
         }
