@@ -471,6 +471,7 @@ define("Casino", ["require", "exports", "Players/Player", "Games/GoFishGame", "P
             this.isPlaying = true;
         }
         Casino.prototype.init = function () {
+            alert("here");
             this.loginOptions();
         };
         Casino.prototype.loginOptions = function () {
@@ -583,16 +584,16 @@ define("App", ["require", "exports", "Casino"], function (require, exports, Casi
     document.getElementById('submit').addEventListener('click', startGame);
 });
 /// <reference path="./Casino.ts" />
-/// <reference path="./Games/GoFishGame.ts" />
-/// <reference path="./GameTools/Card.ts" />
-/// <reference path="./GameTools/Deck.ts" />
-/// <reference path="./GameTools/Rank.ts" />
-/// <reference path="./GameTools/Suit.ts" />
-/// <reference path="./Interfaces/Game.ts" />
-/// <reference path="./Players/GoFishComputerPlayer.ts" />
-/// <reference path="./Players/GoFishHumanPlayer.ts" />
-/// <reference path="./Players/Player.ts" />
-/// <reference path="./Players/GoFishComputerPlayer.ts" />
+// / <reference path="./Games/GoFishGame.ts" />
+// / <reference path="./GameTools/Card.ts" />
+// / <reference path="./GameTools/Deck.ts" />
+// / <reference path="./GameTools/Rank.ts" />
+// / <reference path="./GameTools/Suit.ts" />
+// / <reference path="./Interfaces/Game.ts" />
+// / <reference path="./Players/GoFishComputerPlayer.ts" />
+// / <reference path="./Players/GoFishHumanPlayer.ts" />
+// / <reference path="./Players/Player.ts" />
+// / <reference path="./Players/GoFishComputerPlayer.ts" />
 define("Bootstrapper", ["require", "exports", "Casino"], function (require, exports, Casino_2) {
     "use strict";
     Object.defineProperty(exports, "__esModule", { value: true });

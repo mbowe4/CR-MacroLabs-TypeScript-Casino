@@ -1,8 +1,9 @@
-import { Player } from "../Players/Player";
+//import { Player } from "../Players/Player";
+namespace Casino{
+    export interface Game {
 
-export interface Game {
+        startGame(): void;
+        endGame(): void;
 
-    startGame(): void;
-    endGame(): void;
-
+    }
 }

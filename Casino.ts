@@ -30,6 +30,7 @@ export class Casino {
     }
 
     init():void {
+        alert("here")
         this.loginOptions();
     }
 

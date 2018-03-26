@@ -9,7 +9,7 @@
     <link href="./css/style.css" type="text/css" rel="stylesheet">
     <title>TypeScript Casino | Zipcode Wilmington</title>
 </head>
-<body onload="casino.init()">
+<body>
     <header class="main-header group">
         <div class="title"></div>
         <div class="lesson-link"><img src="./images/logos/js_logo.png" alt="Javascript"/></div>
@@ -19,8 +19,6 @@
 
     <h1>TypeScript Casino</h1>
     <div id="cardGame" hidden="true"></div>
-
-    <script type="text/javascript" src="/js/App.js"></script>
 
     <section id="main">
         <div id="display"></div>
@@ -36,17 +34,17 @@
             </div>
             
             <input type="submit" class="button" id="mainMenu" value="Main Menu" onclick="casino.gameOptions()" hidden="true">
-            <button id="testButton" class="button" onclick="Casino.init()">Test</button>
+            <button id="testButton" class="button">Test</button>
             
             <script type="text/javascript"> document.getElementById("testButton").onclick = function () {
                 //location.href = "/Users/madelinebowe/Dev/CR-MacroLabs-TypeScript-Casino/index.html";
                 alert("button clicked");
-                Casino.init();
+                casino.init();
                 alert("Compiled?");
             };
             </script>
     </section>
 
-
+    <script type="text/javascript" src="/JS/app.js"></script>
 </body>
 </html>
